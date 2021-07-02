@@ -16,17 +16,20 @@ limitations under the License.
 
 package q1833
 
-import "sort"
-
-func maxIceCreamSort(costs []int, coins int) int {
-	sort.Ints(costs)
-	total := 0
+func maxIceCreamCounterSort(costs []int, coins int) int {
+	var a [1 << 17]int // 131072
 	for i := range costs {
-		coins -= costs[i]
-		if coins < 0 {
-			break
+		a[costs[i]]++
+	}
+	total := 0
+	for i := range a { // i is the cost
+		for j := a[i]; j > 0; j-- {
+			coins -= i
+			if coins < 0 {
+				return total
+			}
+			total++
 		}
-		total += 1
 	}
 
 	return total

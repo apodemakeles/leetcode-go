@@ -48,6 +48,11 @@ var cases = []struct {
 		output: 0,
 	},
 	{
+		costs:  []int{1, 6, 3, 1, 2, 5},
+		coins:  20,
+		output: 6,
+	},
+	{
 		costs:  []int{1, 9, 8, 4, 9, 7, 0, 9, 0, 7},
 		coins:  100,
 		output: 10,
@@ -69,6 +74,13 @@ func TestRecursive(t *testing.T) {
 func TestSort(t *testing.T) {
 	for i := range cases {
 		actual := maxIceCreamSort(cases[i].costs, cases[i].coins)
+		assert.Equal(t, cases[i].output, actual)
+	}
+}
+
+func TestCounterSort(t *testing.T) {
+	for i := range cases {
+		actual := maxIceCreamCounterSort(cases[i].costs, cases[i].coins)
 		assert.Equal(t, cases[i].output, actual)
 	}
 }
