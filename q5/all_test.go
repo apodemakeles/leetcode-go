@@ -60,3 +60,19 @@ func TestDP(t *testing.T) {
 		}
 	}
 }
+
+func TestDP2(t *testing.T) {
+	for i := range cases {
+		actual := longestPalindromeDP2(cases[i].input)
+		found := false
+		for _, expected := range cases[i].output {
+			if expected == actual {
+				found = true
+				break
+			}
+		}
+		if !found {
+			assert.Fail(t, fmt.Sprintf("expected %s, actual %s", cases[i].output, actual))
+		}
+	}
+}
