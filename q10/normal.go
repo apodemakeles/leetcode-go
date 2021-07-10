@@ -21,8 +21,8 @@ type item struct {
 	c byte
 }
 
-func equal(a, b byte) bool {
-	return a == b || b == '.'
+func match(a byte, b item) bool {
+	return a == b.c || b.c == '.'
 }
 
 func exactlyMatch(s string, reg []item, i, j int) (bool, int, int) {
@@ -31,7 +31,7 @@ func exactlyMatch(s string, reg []item, i, j int) (bool, int, int) {
 		if pp.w {
 			break
 		}
-		if !equal(s[i], pp.c) {
+		if !match(s[i], pp) {
 			return false, -1, -1
 		}
 		i, j = i+1, j+1
@@ -92,7 +92,7 @@ func isMatchNormal(s string, p string) bool {
 
 			pp := reg[j]
 			if pp.w {
-				if equal(s[i], pp.c) {
+				if match(s[i], pp) {
 					stack.push(i, j)
 				}
 				j++

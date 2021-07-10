@@ -67,11 +67,33 @@ var cases = []struct {
 		p:      ".*c",
 		output: false,
 	},
+	{
+		s:      "aaa",
+		p:      "ab*ac*a",
+		output: true,
+	},
+	{
+		s:      "",
+		p:      ".*",
+		output: true,
+	},
+	{
+		s:      "",
+		p:      "",
+		output: true,
+	},
 }
 
 func TestIsMatchNormal(t *testing.T) {
 	for i := range cases {
 		actual := isMatchNormal(cases[i].s, cases[i].p)
+		assert.Equal(t, cases[i].output, actual)
+	}
+}
+
+func TestIsMatchDP(t *testing.T) {
+	for i := range cases {
+		actual := isMatchDP(cases[i].s, cases[i].p)
 		assert.Equal(t, cases[i].output, actual)
 	}
 }
