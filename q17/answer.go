@@ -25,7 +25,7 @@ func letterCombinations(digits string) []string {
 		'6': {"m", "n", "o"},
 		'7': {"p", "q", "r", "s"},
 		'8': {"t", "u", "v"},
-		'9': {"w", "x", "z"},
+		'9': {"w", "x", "y", "z"},
 	}
 	n := 1
 	for _, x := range digits {
@@ -37,21 +37,19 @@ func letterCombinations(digits string) []string {
 		return []string{}
 	}
 	r := make([]string, n, n)
-	round := 1
 	for i := range digits {
 		num := digits[i]
 		if cs, present := m[int32(num)]; present {
-			t := n / (len(cs) * round)
+			n /= len(cs)
 			j := 0
-			for m := round; m > 0; m-- {
+			for j < len(r) {
 				for _, c := range cs {
-					for k := t; k > 0; k-- {
+					for k := n; k > 0; k-- {
 						r[j] = r[j] + c
 						j++
 					}
 				}
 			}
-			round *= len(cs)
 		}
 	}
 
