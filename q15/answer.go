@@ -22,18 +22,13 @@ import (
 
 func threeSum(nums []int) [][]int {
 	sort.Ints(nums)
+	l := len(nums)
 	result := make([][]int, 0)
-	for k := 0; k < len(nums); k++ {
+	for k := 0; k < len(nums)-2; k++ {
 		if k > 0 && nums[k-1] == nums[k] {
 			continue
 		}
-		if nums[k] > nums[len(nums)-1]*2 {
-			continue
-		}
-		if nums[k] > 0 {
-			break
-		}
-		i, j := k+1, len(nums)-1
+		i, j := k+1, l-1
 		for i < j {
 			if i > k+1 && nums[i-1] == nums[i] {
 				i++

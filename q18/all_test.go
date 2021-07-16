@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package q15
+package q18
 
 import (
 	"fmt"
@@ -27,37 +27,26 @@ import (
 
 var cases = []struct {
 	input  []int
+	target int
 	output [][]int
 }{
 	{
-		input:  []int{-2, 0, 1, 1, 2},
-		output: [][]int{{-2, 0, 2}, {-2, 1, 1}},
-	},
-	{
-		input:  []int{-1, 0, 1, 2, -1, -4},
-		output: [][]int{{-1, -1, 2}, {-1, 0, 1}},
-	},
-	{
-		input:  []int{},
-		output: [][]int{},
-	},
-	{
-		input:  []int{0},
-		output: [][]int{},
-	},
-	{
-		input:  []int{0},
-		output: [][]int{},
-	},
-	{
-		input:  []int{-4, -2, -1},
-		output: [][]int{},
+		input:  []int{1, 0, -1, 0, -2, 2},
+		target: 0,
+		output: [][]int{{-2, -1, 1, 2}, {-2, 0, 0, 2}, {-1, 0, 0, 1}},
 	},
 }
 
-func TestThreeSum(t *testing.T) {
+func TestFourSum(t *testing.T) {
 	for i := range cases {
-		actual := threeSum(cases[i].input)
+		actual := fourSum(cases[i].input, cases[i].target)
+		equals(t, cases[i].output, actual)
+	}
+}
+
+func TestFourSumPrune(t *testing.T) {
+	for i := range cases {
+		actual := fourSumPrune(cases[i].input, cases[i].target)
 		equals(t, cases[i].output, actual)
 	}
 }
