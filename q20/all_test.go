@@ -10,30 +10,30 @@ var cases = []struct {
 	s      string
 	output bool
 }{
-	//{
-	//	s:      "()",
-	//	output: true,
-	//},
-	//{
-	//	s:      "()[]{}",
-	//	output: true,
-	//},
-	//{
-	//	s:      "()[]{}",
-	//	output: true,
-	//},
-	//{
-	//	s:      "(]",
-	//	output: false,
-	//},
-	//{
-	//	s:      "([)]",
-	//	output: false,
-	//},
-	//{
-	//	s:      "{[]}",
-	//	output: true,
-	//},
+	{
+		s:      "()",
+		output: true,
+	},
+	{
+		s:      "()[]{}",
+		output: true,
+	},
+	{
+		s:      "()[]{}",
+		output: true,
+	},
+	{
+		s:      "(]",
+		output: false,
+	},
+	{
+		s:      "([)]",
+		output: false,
+	},
+	{
+		s:      "{[]}",
+		output: true,
+	},
 	{
 		s:      "((",
 		output: false,
