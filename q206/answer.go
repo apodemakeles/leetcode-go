@@ -20,3 +20,16 @@ func reverseList(head *ListNode) *ListNode {
 
 	return head
 }
+
+func reverseList2(head *ListNode) *ListNode {
+	cur := head
+	var prv *ListNode
+	for cur != nil {
+		tmp := cur.Next
+		cur.Next = prv
+		prv = cur
+		cur = tmp
+	}
+
+	return prv
+}
