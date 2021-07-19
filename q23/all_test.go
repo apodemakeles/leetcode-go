@@ -26,25 +26,33 @@ var cases = []struct {
 	input  [][]int
 	output []int
 }{
+	//{
+	//	input:  [][]int{{}, {}},
+	//	output: []int{},
+	//},
+	//{
+	//	input:  [][]int{{1, 4, 5}, {1, 3, 4}, {2, 6}},
+	//	output: []int{1, 1, 2, 3, 4, 4, 5, 6},
+	//},
+	//{
+	//	input:  [][]int{},
+	//	output: []int{},
+	//},
+	//{
+	//	input:  [][]int{{}},
+	//	output: []int{},
+	//},
+	//{
+	//	input:  [][]int{{1}, {2}, {3}},
+	//	output: []int{1, 2, 3},
+	//},
+	//{
+	//	input:  [][]int{{1, 1, 1}, {2, 2, 2}, {3, 3, 3}},
+	//	output: []int{1, 1, 1, 2, 2, 2, 3, 3, 3},
+	//},
 	{
-		input:  [][]int{{1, 4, 5}, {1, 3, 4}, {2, 6}},
-		output: []int{1, 1, 2, 3, 4, 4, 5, 6},
-	},
-	{
-		input:  [][]int{},
-		output: []int{},
-	},
-	{
-		input:  [][]int{{}},
-		output: []int{},
-	},
-	{
-		input:  [][]int{{1}, {2}, {3}},
-		output: []int{1, 2, 3},
-	},
-	{
-		input:  [][]int{{1, 1, 1}, {2, 2, 2}, {3, 3, 3}},
-		output: []int{1, 1, 1, 2, 2, 2, 3, 3, 3},
+		input:  [][]int{{}, {-1, 1, 1, 5}, {}, {6, 10}},
+		output: []int{-1, 1, 1, 5, 6, 10},
 	},
 }
 
@@ -76,6 +84,13 @@ func buildList(input []int) *ListNode {
 func TestMergeKLists(t *testing.T) {
 	for i := range cases {
 		actual := slice(mergeKLists(buildListList(cases[i].input)))
+		assert.Equal(t, cases[i].output, actual)
+	}
+}
+
+func TestMergeKListsSort(t *testing.T) {
+	for i := range cases {
+		actual := slice(mergeKListsSort(buildListList(cases[i].input)))
 		assert.Equal(t, cases[i].output, actual)
 	}
 }
