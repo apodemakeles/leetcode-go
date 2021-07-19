@@ -1,23 +1,23 @@
 package q22
 
-func generateParenthesisRecursive(n int) []string {
-	return genRecursive(nil, n, n)
-}
-
-func genRecursive(s []byte, left, right int) []string {
+func generateParenthesis(n int) []string {
 	var r []string
-	if left == 0 {
-		for i := 0; i < right; i++ {
-			s = append(s, ')')
-		}
-		r = append(r, string(s))
-	} else {
-		i := len(s)
-		r = append(r, genRecursive(append(s, '('), left-1, right)...)
-		if left < right {
-			r = append(r, genRecursive(append(s[:i], ')'), left, right-1)...)
+	var genRecursive func(s []byte, left, right int)
+	genRecursive = func(s []byte, left, right int) {
+		if left == 0 {
+			for i := 0; i < right; i++ {
+				s = append(s, ')')
+			}
+			r = append(r, string(s))
+		} else {
+			i := len(s)
+			genRecursive(append(s, '('), left-1, right)
+			if left < right {
+				genRecursive(append(s[:i], ')'), left, right-1)
+			}
 		}
 	}
+	genRecursive(nil, n, n)
 
 	return r
 }
