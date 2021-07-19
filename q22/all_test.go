@@ -46,7 +46,7 @@ var cases = []struct {
 
 func TestGenerateParenthesisRecursive(t *testing.T) {
 	for i := range cases {
-		actual := generateParenthesisRecursive(cases[i].n)
+		actual := generateParenthesis(cases[i].n)
 		common.StringSliceEquals(t, cases[i].output, actual)
 	}
 }
